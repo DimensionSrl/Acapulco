@@ -30,6 +30,30 @@
             </objects>
             <point key="canvasLocation" x="170.66666666666666" y="231.93333333333334"/>
         </scene>
+        <!--Content View Controller-->
+        <scene sceneID="tbC-7A-f6Y">
+            <objects>
+                <viewController id="7d3-NT-84k" customClass="ContentViewController" customModule="AcapulcoSample" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="p0F-oy-gjy"/>
+                        <viewControllerLayoutGuide type="bottom" id="mae-kU-W8m"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5EI-tg-dSQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SHM-Qm-2WP">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sgy-d7-hKM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="640" y="228"/>
+        </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

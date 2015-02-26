@@ -76,48 +76,45 @@ func application(application: UIApplication, didFinishLaunchingWithOptions launc
 
 ```swift
 func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        Acapulco.sharedInstance.register(apnsToken:deviceToken, serverAddress:"acapulco.dimension.it", applicationKey: "8ef1bd2601579e98")
-    }
-}
-```
-
-### Setup Acapulco
-
-`serverAddress` is your endpoint.
-`applicationKey` is the application identifier, in this case provided by *ThunderBay*.
-
-```swift
-func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        Acapulco.sharedInstance.register(apnsToken:deviceToken, serverAddress:"acapulco.dimension.it", applicationKey: "8ef1bd2601579e98")
-    }
+    Acapulco.sharedInstance.registerAPNSToken(deviceToken, serverAddress:"acapulco.dimension.it", applicationKey: "8ef1bd2601579e98")
 }
 ```
 
 ### Handle foreground notifications
 
 ```swift
-func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-    if(Acapulco.sharedInstance.handleNotification(userInfo)) {
-        // You received an Acapulco notification. Acapulco handled it, but you
-        // might want to do something with it too.
-    } else {
-        // Acapulco does not know how to handle this notification, but maybe you will.
-    }
+func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {        
+        Acapulco.sharedInstance.didReceiveNotification(userInfo)
+        let notification = NotificationFactory.PushReceivedNotification(userInfo)
+        NSNotificationCenter.defaultCenter().postNotification(notification) // Post the notification
 }
 ```
 
 ### Handle background notifications
 
 ```swift
-// TODO: needs to be finalized
+func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+    Acapulco.sharedInstance.didReceiveNotification(userInfo)
+    NSUserDefaults.standardUserDefaults().setObject(userInfo, forKey: "backgroundNotification") // Save the last notification for later user
+    let notification = NotificationFactory.PushReceivedNotification(userInfo)
+    NSNotificationCenter.defaultCenter().postNotification(notification) // Post the notification
+    completionHandler(UIBackgroundFetchResult.NewData)
+}
 
 ```
 
 ### Handle application launches from notifications
 
-```swift
-// TODO: needs to be finalized
+We save the last notification received.
 
+```swift
+func applicationDidBecomeActive(application: UIApplication) {   
+    if let backgroundNotification : NSObject = NSUserDefaults.standardUserDefaults().objectForKey("backgroundNotification") as? NSObject {            
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("backgroundNotification") // We don't need it anymore
+        let notification = NotificationFactory.PushReceivedNotification(backgroundNotification as! [NSObject : AnyObject])
+        NSNotificationCenter.defaultCenter().postNotification(notification) // Post the notification
+    }
+}
 ```
 
 ---

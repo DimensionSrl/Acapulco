@@ -13,6 +13,7 @@ public class MainViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Load the webview content
         if let URL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("README", ofType: "html")!) {
             let request = NSURLRequest(URL: URL)
             if let webView = view as? UIWebView {
@@ -20,8 +21,8 @@ public class MainViewController: UIViewController {
             }
         }
 
+        // Renew registrations to NSNotificationCenter
         NSNotificationCenter.defaultCenter().removeObserver(self)
-        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleApplicationDidEnterBackgroundNotification:", name: UIApplicationDidEnterBackgroundNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleApplicationDidBecomeActiveNotification:", name: UIApplicationWillEnterForegroundNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleNotification:", name: NotificationFactory.Names.PushReceivedNotificationName, object: nil)
@@ -42,11 +43,13 @@ public class MainViewController: UIViewController {
     
     public func handleApplicationDidEnterBackgroundNotification(notification: NSNotification) {
         
+        // Stop accepting local notification while in background
         NSNotificationCenter.defaultCenter().removeObserver(self, name: NotificationFactory.Names.PushReceivedNotificationName, object: nil)
     }
     
     public func handleApplicationDidBecomeActiveNotification(notification: NSNotification) {
         
+        // Resume handling local notification
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleNotification:", name: NotificationFactory.Names.PushReceivedNotificationName, object: nil)
     }
     

@@ -11,7 +11,7 @@ import UIKit
 public class ContentViewController : UIViewController {
     
     @IBOutlet weak var webView: UIWebView?
-    @IBOutlet weak var debugButton: UIBarButtonItem!
+    @IBOutlet weak var debugButton: UIBarButtonItem?
     
     var debug : Bool = false {
         didSet {
@@ -41,6 +41,10 @@ public class ContentViewController : UIViewController {
             Acapulco.sharedInstance.didRedNotification(userInfo as! [NSObject : AnyObject])
             
             if debug { // Show raw notification data
+                
+                if let button = debugButton?.customView as? UIButton {
+                    button.setTitle("To web", forState: UIControlState.Normal)
+                }
 
                 let content = payload.description // Just take the description...
                 
@@ -50,18 +54,24 @@ public class ContentViewController : UIViewController {
                 
             } else { // Attemp to load the URL
                 
-                if let urlString = payload["url"] as? String {
-                    
-                    if let URL = NSURL(string: urlString) {
-                        let request = NSURLRequest(URL: URL)
+                if let button = debugButton?.customView as? UIButton {
+                    button.setTitle("To raw", forState: UIControlState.Normal)
+                }
+                
+                // Clear the webview
+                let htmlString = "<html><body></body></html>"
+                webView?.loadHTMLString(htmlString, baseURL: nil)
+                
+                if let urlString = payload["url"] as? String,
+                    let URL = NSURL(string: urlString) as NSURL?,
+                        let request = NSURLRequest(URL: URL) as NSURLRequest? {
                         webView?.loadRequest(request)
-                    }
-                } else {
-                    
                 }
             }
         }
     }
+    
+    // MARK: UIViewController
     
     override public func viewDidLoad() {
         super.viewDidLoad()

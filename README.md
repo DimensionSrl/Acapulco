@@ -128,8 +128,8 @@ Acapulco has been developed with love in Trento, Italy by [DIMENSION S.r.l.](htt
 
 ### Contributors
 
-- [Matteo Gavagnin](http://github.com/macteo) ([@macteo](https://twitter.com/macteo))
 - [Nicolò Tosi](http://github.com/nick-mobfarm)
+- [Matteo Gavagnin](http://github.com/macteo) ([@macteo](https://twitter.com/macteo))
 
 ## License
 

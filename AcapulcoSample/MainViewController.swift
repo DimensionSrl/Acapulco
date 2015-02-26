@@ -63,5 +63,10 @@ public class MainViewController: UIViewController {
         }
         
     }
+    
+    deinit {
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
 }
 

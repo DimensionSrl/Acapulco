@@ -12,7 +12,11 @@ public class ContentViewController : UIViewController {
     
     @IBOutlet weak var webView: UIWebView?
     
-    var debug : Bool = false
+    var debug : Bool = false {
+        didSet {
+            updateUserInfo()
+        }
+    }
     
     @IBAction public func actionDone(sender:AnyObject?) {
         
@@ -20,7 +24,7 @@ public class ContentViewController : UIViewController {
     }
     
     @IBAction public func actionDebug(sender:AnyObject?) {
-        
+        self.debug = !debug
     }
     
     public var userInfo : NSObject? {

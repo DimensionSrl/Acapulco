@@ -27,6 +27,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         NSUserDefaults.standardUserDefaults().setObject(userInfo, forKey: "backgroundNotification") // Save the last notification for later user
         
+        let notification = NotificationFactory.PushReceivedNotification(userInfo)
+        NSNotificationCenter.defaultCenter().postNotification(notification) // Post the notification
+        
         completionHandler(UIBackgroundFetchResult.NewData)
     }
     

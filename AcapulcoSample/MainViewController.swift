@@ -19,6 +19,12 @@ public class MainViewController: UIViewController {
                 webView.loadRequest(request)
             }
         }
+
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleApplicationDidEnterBackgroundNotification:", name: UIApplicationDidEnterBackgroundNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleApplicationDidBecomeActiveNotification:", name: UIApplicationWillEnterForegroundNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleNotification:", name: NotificationFactory.Names.PushReceivedNotificationName, object: nil)
     }
     
     override public func viewDidAppear(animated: Bool) {
@@ -32,6 +38,14 @@ public class MainViewController: UIViewController {
         } else {
             println("Acapulco is already registered")
         }
+    }
+    
+    public func handleApplicationDidEnterBackgroundNotification(notification: NSNotification) {
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: NotificationFactory.Names.PushReceivedNotificationName, object: nil)
+    }
+    
+    public func handleApplicationDidBecomeActiveNotification(notification: NSNotification) {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleNotification:", name: NotificationFactory.Names.PushReceivedNotificationName, object: nil)
     }
@@ -61,7 +75,6 @@ public class MainViewController: UIViewController {
                 contentViewController.userInfo = userInfo
             }
         }
-        
     }
     
     deinit {

@@ -52,10 +52,10 @@ public class ContentViewController : UIViewController {
                 
                 if let urlString = payload["url"] as? String {
                     
-                    let URL = NSURL(string: urlString)
-                    let request = NSURLRequest(URL: URL!)
-                    webView?.loadRequest(request)
-                    
+                    if let URL = NSURL(string: urlString) {
+                        let request = NSURLRequest(URL: URL)
+                        webView?.loadRequest(request)
+                    }
                 } else {
                     
                 }

@@ -42,10 +42,6 @@ public class ContentViewController : UIViewController {
             
             if debug { // Show raw notification data
                 
-                if let button = debugButton?.customView as? UIButton {
-                    button.setTitle("To web", forState: UIControlState.Normal)
-                }
-
                 let content = payload.description // Just take the description...
                 
                 let htmlString = "<html><body>" + content + "</body></html>" // ... and dump it in the body of the HTML page
@@ -53,10 +49,6 @@ public class ContentViewController : UIViewController {
                 webView?.loadHTMLString(htmlString, baseURL: nil) // Show the HTML page
                 
             } else { // Attemp to load the URL
-                
-                if let button = debugButton?.customView as? UIButton {
-                    button.setTitle("To raw", forState: UIControlState.Normal)
-                }
                 
                 // Clear the webview
                 let htmlString = "<html><body></body></html>"

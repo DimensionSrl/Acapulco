@@ -112,20 +112,14 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
-                        <barButtonItem key="rightBarButtonItem" id="YdM-sf-EwZ">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="EhU-GT-5wT">
-                                <rect key="frame" x="-23" y="-15" width="71" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <state key="normal" title="Toggle"/>
-                                <connections>
-                                    <action selector="actionDebug:" destination="CbH-08-Zyr" eventType="touchUpInside" id="DlJ-pd-Z7H"/>
-                                </connections>
-                            </button>
+                        <barButtonItem key="rightBarButtonItem" title="Toggle" id="8DG-XV-oyM">
+                            <connections>
+                                <action selector="actionDebug:" destination="CbH-08-Zyr" id="Q6V-6w-Ddq"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="debugButton" destination="YdM-sf-EwZ" id="l5T-3H-SBH"/>
+                        <outlet property="debugButton" destination="8DG-XV-oyM" id="jLp-MF-o9z"/>
                         <outlet property="webView" destination="IbQ-Ek-mf7" id="0uQ-c6-ePB"/>
                     </connections>
                 </viewController>

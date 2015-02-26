@@ -207,13 +207,13 @@ Keep in mind that you need to change the <em>bundle-id</em> of the application, 
 However we&#8217;ve setup a <em>demo instance</em> that will be purged frequently, to let you jump start. You can find it at <a href="http://acapulco.dimension.it">acapulco.dimension.it</a>.</p>
 
 <h3 id="registerforremotenotifications">Register for remote notifications</h3>
-<pre><code>func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -&gt; Bool {
- // Attempt to enable push notifications
- let types : UIUserNotificationType = .Badge | .Sound | .Alert
- let settings = UIUserNotificationSettings(forTypes: types, categories: nil)
- UIApplication.sharedApplication().registerUserNotificationSettings(settings)
- return true
-}</code></pre>
+<pre><code class="swift">func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -&gt; Bool {
+    // Attempt to enable push notifications
+    let types : UIUserNotificationType = .Badge | .Sound | .Alert
+    let settings = UIUserNotificationSettings(forTypes: types, categories: nil)
+    UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+    return true
+}    </code></pre>
 
 <p><em>Those instructions are intended for iOS 8+.</em></p>
 
@@ -221,36 +221,41 @@ However we&#8217;ve setup a <em>demo instance</em> that will be purged frequentl
 
 <p><code>serverAddress</code> is your endpoint.<br/>
 <code>applicationKey</code> is the application identifier, in this case provided by <em>ThunderBay</em>.</p>
-<pre><code>func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
- Acapulco.sharedInstance.registerAPNSToken(deviceToken, serverAddress:&quot;acapulco.dimension.it&quot;, applicationKey: &quot;8ef1bd2601579e98&quot;)
+<pre><code class="swift">func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+    Acapulco.sharedInstance.registerAPNSToken(deviceToken, serverAddress:&quot;acapulco.dimension.it&quot;, applicationKey: &quot;8ef1bd2601579e98&quot;)
 }</code></pre>
 
 <h3 id="handleforegroundnotifications">Handle foreground notifications</h3>
-<pre><code>func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
- Acapulco.sharedInstance.didReceiveNotification(userInfo)
- let notification = NotificationFactory.PushReceivedNotification(userInfo)
- NSNotificationCenter.defaultCenter().postNotification(notification) // Post the notification
+<pre><code class="swift">func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {        
+        Acapulco.sharedInstance.didReceiveNotification(userInfo)
+        let notification = NotificationFactory.PushReceivedNotification(userInfo)
+        NSNotificationCenter.defaultCenter().postNotification(notification) // Post the notification
 }</code></pre>
 
 <h3 id="handlebackgroundnotifications">Handle background notifications</h3>
-<pre><code>func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -&gt; Void) {
- Acapulco.sharedInstance.didReceiveNotification(userInfo)
- NSUserDefaults.standardUserDefaults().setObject(userInfo, forKey: &quot;backgroundNotification&quot;) // Save the last notification for later user
- let notification = NotificationFactory.PushReceivedNotification(userInfo)
- NSNotificationCenter.defaultCenter().postNotification(notification) // Post the notification
- completionHandler(UIBackgroundFetchResult.NewData)
+<pre><code class="swift">func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -&gt; Void) {
+    Acapulco.sharedInstance.didReceiveNotification(userInfo)
+    NSUserDefaults.standardUserDefaults().setObject(userInfo, forKey: &quot;backgroundNotification&quot;) // Save the last notification for later user
+    let notification = NotificationFactory.PushReceivedNotification(userInfo)
+    NSNotificationCenter.defaultCenter().postNotification(notification) // Post the notification
+    completionHandler(UIBackgroundFetchResult.NewData)
 }
 </code></pre>
 
-<h3 id="handleapplicationlaunchesfromnotifications">Handle application launches from notifications</h3>
+<h3 id="handleapplicationlaunchestoregisteragainandupdatethevalues">Handle application launches to register again and update the values</h3>
 
 <p>We save the last notification received.</p>
-<pre><code>func applicationDidBecomeActive(application: UIApplication) {
- if let backgroundNotification : NSObject = NSUserDefaults.standardUserDefaults().objectForKey(&quot;backgroundNotification&quot;) as? NSObject {
- NSUserDefaults.standardUserDefaults().removeObjectForKey(&quot;backgroundNotification&quot;) // We don&apos;t need it anymore
- let notification = NotificationFactory.PushReceivedNotification(backgroundNotification as! [NSObject : AnyObject])
- NSNotificationCenter.defaultCenter().postNotification(notification) // Post the notification
- }
+<pre><code class="swift">func applicationDidBecomeActive(application: UIApplication) {   
+    if let backgroundNotification : NSObject = NSUserDefaults.standardUserDefaults().objectForKey(&quot;backgroundNotification&quot;) as? NSObject {            
+        NSUserDefaults.standardUserDefaults().removeObjectForKey(&quot;backgroundNotification&quot;) // We don&apos;t need it anymore
+        let notification = NotificationFactory.PushReceivedNotification(backgroundNotification as! [NSObject : AnyObject])
+        NSNotificationCenter.defaultCenter().postNotification(notification) // Post the notification
+    }
+}</code></pre>
+
+<h3 id="setupcallbacktogetnotificationtyperegistrationresult">Setup callback to get notification type registration result</h3>
+<pre><code class="swift">func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
+    application.registerForRemoteNotifications()
 }</code></pre>
 
 <hr />

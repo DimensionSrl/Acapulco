@@ -103,7 +103,7 @@ func application(application: UIApplication, didReceiveRemoteNotification userIn
 
 ```
 
-### Handle application launches from notifications
+### Handle application launches to register again and update the values
 
 We save the last notification received.
 
@@ -114,6 +114,14 @@ func applicationDidBecomeActive(application: UIApplication) {
         let notification = NotificationFactory.PushReceivedNotification(backgroundNotification as! [NSObject : AnyObject])
         NSNotificationCenter.defaultCenter().postNotification(notification) // Post the notification
     }
+}
+```
+
+### Setup callback to get notification type registration result
+
+```swift
+func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
+    application.registerForRemoteNotifications()
 }
 ```
 

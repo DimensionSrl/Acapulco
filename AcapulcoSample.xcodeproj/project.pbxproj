@@ -21,7 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		012D17AA1A9E1C6A00362426 /* AcapulcoSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AcapulcoSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		012D17AA1A9E1C6A00362426 /* Acapulco.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Acapulco.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		012D17AE1A9E1C6A00362426 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		012D17AF1A9E1C6A00362426 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		012D17B11A9E1C6A00362426 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -61,7 +61,7 @@
 		012D17AB1A9E1C6A00362426 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				012D17AA1A9E1C6A00362426 /* AcapulcoSample.app */,
+				012D17AA1A9E1C6A00362426 /* Acapulco.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -113,9 +113,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		012D17A91A9E1C6A00362426 /* AcapulcoSample */ = {
+		012D17A91A9E1C6A00362426 /* Acapulco */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 012D17C91A9E1C6A00362426 /* Build configuration list for PBXNativeTarget "AcapulcoSample" */;
+			buildConfigurationList = 012D17C91A9E1C6A00362426 /* Build configuration list for PBXNativeTarget "Acapulco" */;
 			buildPhases = (
 				012D17A61A9E1C6A00362426 /* Sources */,
 				012D17A71A9E1C6A00362426 /* Frameworks */,
@@ -125,9 +125,9 @@
 			);
 			dependencies = (
 			);
-			name = AcapulcoSample;
+			name = Acapulco;
 			productName = AcapulcoSample;
-			productReference = 012D17AA1A9E1C6A00362426 /* AcapulcoSample.app */;
+			productReference = 012D17AA1A9E1C6A00362426 /* Acapulco.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -163,7 +163,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				012D17A91A9E1C6A00362426 /* AcapulcoSample */,
+				012D17A91A9E1C6A00362426 /* Acapulco */,
 			);
 		};
 /* End PBXProject section */
@@ -298,13 +298,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = AcapulcoSample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				"OTHER_SWIFT_FLAGS[arch=*]" = "-D DEBUG";
+				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "3df560eb-3f87-426b-a541-21efa98d8b2f";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -314,13 +313,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: DIMENSION SRL";
 				INFOPLIST_FILE = AcapulcoSample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "71a2d7a3-3749-4b33-b0f4-46a02f252fe2";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -337,7 +335,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		012D17C91A9E1C6A00362426 /* Build configuration list for PBXNativeTarget "AcapulcoSample" */ = {
+		012D17C91A9E1C6A00362426 /* Build configuration list for PBXNativeTarget "Acapulco" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				012D17CA1A9E1C6A00362426 /* Debug */,

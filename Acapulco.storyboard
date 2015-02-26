@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7519.1" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="iRb-TT-txP">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7513.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Main View Controller-->
@@ -80,17 +81,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IbQ-Ek-mf7">
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IbQ-Ek-mf7">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="IbQ-Ek-mf7" firstAttribute="leading" secondItem="ez9-ee-hFn" secondAttribute="leading" id="3cp-6n-mil"/>
+                            <constraint firstAttribute="trailing" secondItem="IbQ-Ek-mf7" secondAttribute="trailing" id="Wbi-uM-7gs"/>
+                            <constraint firstItem="IbQ-Ek-mf7" firstAttribute="top" secondItem="ez9-ee-hFn" secondAttribute="topMargin" id="ddK-a3-Qx9"/>
+                            <constraint firstItem="pWQ-34-jZf" firstAttribute="top" secondItem="IbQ-Ek-mf7" secondAttribute="bottom" id="gvy-dH-gaO"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="iJY-cI-yjx">
-                        <barButtonItem key="leftBarButtonItem" title="Item" systemItem="done" id="VsV-wb-GHr"/>
-                        <barButtonItem key="rightBarButtonItem" title="Debug" id="cs0-20-515"/>
+                        <barButtonItem key="leftBarButtonItem" title="Item" systemItem="done" id="VsV-wb-GHr">
+                            <connections>
+                                <action selector="actionDone:" destination="CbH-08-Zyr" id="b51-4m-koX"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Debug" id="cs0-20-515">
+                            <connections>
+                                <action selector="actionDebug:" destination="CbH-08-Zyr" id="crE-jj-lmC"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="webView" destination="IbQ-Ek-mf7" id="ZrN-hg-maa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bz3-wX-M09" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

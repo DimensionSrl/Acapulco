@@ -10,6 +10,17 @@ import UIKit
 
 public class MainViewController: UIViewController {
     
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+
+        if let URL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("README", ofType: "html")!) {
+            let request = NSURLRequest(URL: URL)
+            if let webView = view as? UIWebView {
+                webView.loadRequest(request)
+            }
+        }
+    }
+    
     override public func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         

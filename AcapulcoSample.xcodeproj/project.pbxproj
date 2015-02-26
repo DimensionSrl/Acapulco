@@ -12,12 +12,12 @@
 		012D17B71A9E1C6A00362426 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 012D17B61A9E1C6A00362426 /* Images.xcassets */; };
 		012D17BA1A9E1C6A00362426 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 012D17B81A9E1C6A00362426 /* LaunchScreen.xib */; };
 		012D17D01A9E1C9300362426 /* Acapulco.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012D17CF1A9E1C9300362426 /* Acapulco.swift */; };
-		01C6E0331A9E279F00461A8A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 012D17B31A9E1C6A00362426 /* Main.storyboard */; };
 		01C6E0351A9E289500461A8A /* Acapulco.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01C6E0341A9E289500461A8A /* Acapulco.storyboard */; };
 		01C6E0371A9E7F7000461A8A /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C6E0361A9E7F7000461A8A /* ContentViewController.swift */; };
 		01E2DA5B1A9F113F00FA5D39 /* NotificationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E2DA5A1A9F113F00FA5D39 /* NotificationFactory.swift */; };
 		01E2DA5D1A9F213300FA5D39 /* PushPermissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E2DA5C1A9F213300FA5D39 /* PushPermissionViewController.swift */; };
 		01E2DA5F1A9F225F00FA5D39 /* DoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E2DA5E1A9F225F00FA5D39 /* DoneViewController.swift */; };
+		955084B41A9F40C5009BBFD8 /* README.html in Resources */ = {isa = PBXBuildFile; fileRef = 955084B31A9F40C5009BBFD8 /* README.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +25,6 @@
 		012D17AE1A9E1C6A00362426 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		012D17AF1A9E1C6A00362426 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		012D17B11A9E1C6A00362426 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		012D17B41A9E1C6A00362426 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		012D17B61A9E1C6A00362426 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		012D17B91A9E1C6A00362426 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		012D17C41A9E1C6A00362426 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -36,6 +35,7 @@
 		01E2DA5A1A9F113F00FA5D39 /* NotificationFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationFactory.swift; sourceTree = "<group>"; };
 		01E2DA5C1A9F213300FA5D39 /* PushPermissionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushPermissionViewController.swift; sourceTree = "<group>"; };
 		01E2DA5E1A9F225F00FA5D39 /* DoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoneViewController.swift; sourceTree = "<group>"; };
+		955084B31A9F40C5009BBFD8 /* README.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = README.html; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +74,6 @@
 				01C6E0361A9E7F7000461A8A /* ContentViewController.swift */,
 				012D17B11A9E1C6A00362426 /* MainViewController.swift */,
 				01E2DA5A1A9F113F00FA5D39 /* NotificationFactory.swift */,
-				012D17B31A9E1C6A00362426 /* Main.storyboard */,
 				01C6E0341A9E289500461A8A /* Acapulco.storyboard */,
 				012D17B61A9E1C6A00362426 /* Images.xcassets */,
 				012D17B81A9E1C6A00362426 /* LaunchScreen.xib */,
@@ -88,6 +87,7 @@
 		012D17AD1A9E1C6A00362426 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				955084B31A9F40C5009BBFD8 /* README.html */,
 				012D17AE1A9E1C6A00362426 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -141,6 +141,7 @@
 				TargetAttributes = {
 					012D17A91A9E1C6A00362426 = {
 						CreatedOnToolsVersion = 6.3;
+						DevelopmentTeam = GXH4K8J6KR;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -172,7 +173,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01C6E0331A9E279F00461A8A /* Main.storyboard in Resources */,
+				955084B41A9F40C5009BBFD8 /* README.html in Resources */,
 				012D17BA1A9E1C6A00362426 /* LaunchScreen.xib in Resources */,
 				01C6E0351A9E289500461A8A /* Acapulco.storyboard in Resources */,
 				012D17B71A9E1C6A00362426 /* Images.xcassets in Resources */,
@@ -199,14 +200,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		012D17B31A9E1C6A00362426 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				012D17B41A9E1C6A00362426 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		012D17B81A9E1C6A00362426 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -303,12 +296,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: NicolÃÆÃÂ² Tosi (FC42RM5X96)";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = AcapulcoSample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "44754fed-21f7-40cc-81b3-910d8f2abee3";
+				PROVISIONING_PROFILE = "3df560eb-3f87-426b-a541-21efa98d8b2f";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -317,6 +311,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: DIMENSION SRL";
 				INFOPLIST_FILE = AcapulcoSample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

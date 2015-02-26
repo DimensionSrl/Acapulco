@@ -23,13 +23,68 @@ public class Acapulco {
     }
     
     /**
-        Get the singleton. This is the only valid way to create an Acapulco instance.
+    Get the singleton. This is the only valid way to create an Acapulco instance.
     */
     public class var sharedInstance: Acapulco {
         struct SharedInstance  {
             static let instance = Acapulco()
         }
         return SharedInstance.instance
+    }
+    
+    /**
+    Tell Acapulco to register itself onto the server. You must set both
+    the serverAddress and the applicationToken by the time you call this method.
+    
+    :token: The token you got back when you registered on the APNS.
+    
+    :serverAddress: The address of Acapulco.
+    
+    :applicationKey: The application key you got from Acapulco.
+    */
+    public func registerAPNSToken(token: NSData, serverAddress: String, applicationKey: String) {
+        
+        let tokenString = convertTokenDataToHexString(token)
+        
+        register(tokenString, serverAddress: serverAddress, applicationKey: applicationKey)
+    }
+    
+    /**
+        Tell you if this application has been already registered on Acapulco.
+    
+        :returns: true if already registered, otherwise false.
+    */
+    public func isRegistered() -> Bool {
+        
+        return NSUserDefaults.standardUserDefaults().objectForKey(AcapulcoConstants.RegistrationIdKey) != nil
+    }
+    
+    /**
+        Tell Acapulco you red the notification.
+    
+        :userInfo: The notification payload.
+    */
+    public func didRedNotification(userInfo:[NSObject : AnyObject]) {
+        
+        let payload = userInfo as NSDictionary
+        
+        if let notificationId = payload["id"] as? Int {
+                tellNotificationReceived(notificationId)
+        }
+    }
+    
+    /**
+        Tell Acapulco you received the notification.
+    
+        :userInfo: The notification payload.
+    */
+    public func didReceiveNotification(userInfo:[NSObject : AnyObject]) {
+        
+        let payload = userInfo as NSDictionary
+        
+         if let notificationId = payload["id"] as? Int {
+                tellNotificationReceived(notificationId)
+        }
     }
     
     private func tellNotificationRed(notificationId: Int, registrationId: String, serverAddress: String, applicationKey: String) {
@@ -143,7 +198,8 @@ public class Acapulco {
                     tellNotificationRed(notificationId!)
                 }
             }
-                    return true
+            
+            return true
         }
         
         return false
@@ -202,7 +258,7 @@ public class Acapulco {
         request.timeoutInterval = AcapulcoConstants.Timeout
         
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
-            (data, response, error) in
+            [weak self](data, response, error) in
             
             println(NSString(data: data, encoding: NSUTF8StringEncoding))
             
@@ -210,7 +266,7 @@ public class Acapulco {
                 
                 var error :NSErrorPointer = nil
                 if let response = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.allZeros, error: error) as? NSDictionary, let registrationId = response["id"] as? String {
-                    self.updateRegistration(token, serverAddress: serverAddress, applicationKey: applicationKey, registrationId:registrationId)
+                    self?.updateRegistration(token, serverAddress: serverAddress, applicationKey: applicationKey, registrationId:registrationId)
                 }
             } else {
                 
@@ -226,22 +282,5 @@ public class Acapulco {
         let tokenString = token.description.stringByReplacingOccurrencesOfString("<", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil).stringByReplacingOccurrencesOfString(">", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil).stringByReplacingOccurrencesOfString(" ", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
         
         return tokenString
-    }
-    
-    /**
-        Tell Acapulco to register itself onto the server. You must set both
-    the serverAddress and the applicationToken by the time you call this method.
-    
-    :apnsToken: The token you got back when you registered on the APNS.
-    
-    :serverAddress: The address of Acapulco.
-    
-    :applicationKey: The application key you got from Acapulco.
-    */
-    public func register(apnsToken token: NSData, serverAddress: String, applicationKey: String) {
-        
-        let tokenString = convertTokenDataToHexString(token)
-        
-        register(tokenString, serverAddress: serverAddress, applicationKey: applicationKey)
     }
 }

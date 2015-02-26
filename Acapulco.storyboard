@@ -1,42 +1,232 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7519.1" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="sUx-wB-QcG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7519.1" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="iRb-TT-txP">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7513.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="3eW-CZ-xVU">
             <objects>
-                <viewController storyboardIdentifier="ContentVC" id="sUx-wB-QcG" customClass="ViewController" customModule="AcapulcoSample" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="LZc-7h-cKZ"/>
-                        <viewControllerLayoutGuide type="bottom" id="jFo-PS-IbC"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="B0Y-lg-GGE">
+                <viewController storyboardIdentifier="MainVC" id="sUx-wB-QcG" customClass="MainViewController" customModule="AcapulcoSample" customModuleProvider="target" sceneMemberID="viewController">
+                    <webView key="view" contentMode="scaleToFill" id="Qrm-yU-4KY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Acapulco" translatesAutoresizingMaskIntoConstraints="NO" id="VVN-qu-Q6n">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                            </imageView>
-                        </subviews>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="jFo-PS-IbC" firstAttribute="top" secondItem="VVN-qu-Q6n" secondAttribute="bottom" id="EXK-Ud-0G6"/>
-                            <constraint firstItem="VVN-qu-Q6n" firstAttribute="top" secondItem="B0Y-lg-GGE" secondAttribute="topMargin" id="Nvc-AI-IOv"/>
-                            <constraint firstItem="VVN-qu-Q6n" firstAttribute="leading" secondItem="B0Y-lg-GGE" secondAttribute="leading" id="Wcr-az-6Yl"/>
-                            <constraint firstAttribute="trailing" secondItem="VVN-qu-Q6n" secondAttribute="trailing" id="gff-9v-wRn"/>
-                        </constraints>
-                    </view>
+                    </webView>
+                    <navigationItem key="navigationItem" id="PUu-OA-1XC">
+                        <nil key="title"/>
+                        <view key="titleView" contentMode="scaleToFill" id="tAB-DO-Qr1">
+                            <rect key="frame" x="96" y="6" width="128" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="vc2-mk-hIC">
+                                    <rect key="frame" x="0.0" y="0.0" width="128" height="33"/>
+                                </imageView>
+                            </subviews>
+                        </view>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="IT9-WQ-9B1" kind="modal" identifier="registration" modalTransitionStyle="coverVertical" id="JFB-yx-4eI"/>
+                        <segue destination="kWT-UO-fkF" kind="modal" identifier="showContent" id="U0E-OF-Iee"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Es9-Ql-Asg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="343" y="396"/>
+            <point key="canvasLocation" x="381" y="406"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ESv-34-7GP">
+            <objects>
+                <navigationController id="iRb-TT-txP" sceneMemberID="viewController">
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sIf-UK-05d">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.92941176470588238" green="0.72549019607843135" blue="0.062745098039215685" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="sUx-wB-QcG" kind="relationship" relationship="rootViewController" id="sDN-pH-TWV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aoD-Lh-RB5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-55" y="414"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="MlK-6c-uXy">
+            <objects>
+                <navigationController id="kWT-UO-fkF" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="SJx-cH-wqb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="CbH-08-Zyr" kind="relationship" relationship="rootViewController" id="z85-78-cwS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qoa-wI-CxT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="841" y="57"/>
+        </scene>
+        <!--Content View Controller-->
+        <scene sceneID="sp8-bh-VoT">
+            <objects>
+                <viewController storyboardIdentifier="ContentVC" id="CbH-08-Zyr" customClass="ContentViewController" customModule="AcapulcoSample" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZfE-w1-UrW"/>
+                        <viewControllerLayoutGuide type="bottom" id="pWQ-34-jZf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ez9-ee-hFn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IbQ-Ek-mf7">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="iJY-cI-yjx">
+                        <barButtonItem key="leftBarButtonItem" title="Item" systemItem="done" id="VsV-wb-GHr"/>
+                        <barButtonItem key="rightBarButtonItem" title="Debug" id="cs0-20-515"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bz3-wX-M09" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1262" y="57"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="eR0-lV-AYq">
+            <objects>
+                <navigationController id="IT9-WQ-9B1" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bbn-NU-xCA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.92941176469999998" green="0.72549019609999998" blue="0.062745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="HoI-RM-Lv3" kind="relationship" relationship="rootViewController" id="PlU-Mr-2EV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pyt-Zl-rRv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="841" y="829"/>
+        </scene>
+        <!--Push Permission View Controller-->
+        <scene sceneID="F3c-zb-J7I">
+            <objects>
+                <viewController id="HoI-RM-Lv3" customClass="PushPermissionViewController" customModule="AcapulcoSample" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="AwX-3W-2JH"/>
+                        <viewControllerLayoutGuide type="bottom" id="rgv-rp-Q7w"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qKQ-xE-B30">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="apf-Q0-G3E">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <color key="backgroundColor" red="0.92941176470588238" green="0.72549019607843135" blue="0.062745098039215685" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="TgJ-Yf-KRg"/>
+                                </constraints>
+                                <state key="normal" title="Next">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="actionAskPermission" destination="HoI-RM-Lv3" eventType="touchUpInside" id="NPm-er-dNc"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ti chiedo il permesso push" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PDJ-tw-wuw">
+                                <rect key="frame" x="101" y="161" width="206" height="181"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="rgv-rp-Q7w" firstAttribute="top" secondItem="apf-Q0-G3E" secondAttribute="bottom" id="FlK-0F-HsI"/>
+                            <constraint firstItem="apf-Q0-G3E" firstAttribute="leading" secondItem="qKQ-xE-B30" secondAttribute="leading" id="nhp-zj-SFs"/>
+                            <constraint firstAttribute="trailing" secondItem="apf-Q0-G3E" secondAttribute="trailing" id="rO5-Iq-rZg"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="ACz-eW-WUv">
+                        <nil key="title"/>
+                        <view key="titleView" contentMode="scaleToFill" id="IjH-Dq-2UM">
+                            <rect key="frame" x="96" y="6" width="128" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="pC8-LT-PiZ">
+                                    <rect key="frame" x="0.0" y="0.0" width="128" height="33"/>
+                                </imageView>
+                            </subviews>
+                        </view>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="BuD-HZ-HYJ" kind="push" identifier="toThanks" id="bHk-du-rkI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Rz-D4-6Fz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1262" y="829"/>
+        </scene>
+        <!--Done View Controller-->
+        <scene sceneID="IwD-Kj-YVw">
+            <objects>
+                <viewController id="BuD-HZ-HYJ" customClass="DoneViewController" customModule="AcapulcoSample" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="AiD-a7-pGP"/>
+                        <viewControllerLayoutGuide type="bottom" id="81h-2v-kBH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ibF-fh-PqA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kts-ku-1f1">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <color key="backgroundColor" red="0.92941176469999998" green="0.72549019609999998" blue="0.062745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="1BB-4o-GfO"/>
+                                </constraints>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="actionDone" destination="BuD-HZ-HYJ" eventType="touchUpInside" id="WFk-6q-5cj"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="kts-ku-1f1" secondAttribute="trailing" id="7hI-Z2-35M"/>
+                            <constraint firstItem="81h-2v-kBH" firstAttribute="top" secondItem="kts-ku-1f1" secondAttribute="bottom" id="STl-Zf-Sdn"/>
+                            <constraint firstItem="kts-ku-1f1" firstAttribute="leading" secondItem="ibF-fh-PqA" secondAttribute="leading" id="lkj-z0-fVb"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="43L-aQ-cDd">
+                        <nil key="title"/>
+                        <view key="titleView" contentMode="scaleToFill" id="1yZ-qA-1ur">
+                            <rect key="frame" x="96" y="6" width="128" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="5oz-AV-yUk">
+                                    <rect key="frame" x="0.0" y="0.0" width="128" height="33"/>
+                                </imageView>
+                            </subviews>
+                        </view>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5br-XD-Sz8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1670" y="829"/>
         </scene>
     </scenes>
     <resources>
-        <image name="Acapulco" width="1024" height="1024"/>
+        <image name="Logo" width="118" height="38"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

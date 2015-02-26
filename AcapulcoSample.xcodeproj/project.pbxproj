@@ -8,20 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		012D17B01A9E1C6A00362426 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012D17AF1A9E1C6A00362426 /* AppDelegate.swift */; };
-		012D17B21A9E1C6A00362426 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012D17B11A9E1C6A00362426 /* ViewController.swift */; };
+		012D17B21A9E1C6A00362426 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012D17B11A9E1C6A00362426 /* MainViewController.swift */; };
 		012D17B71A9E1C6A00362426 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 012D17B61A9E1C6A00362426 /* Images.xcassets */; };
 		012D17BA1A9E1C6A00362426 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 012D17B81A9E1C6A00362426 /* LaunchScreen.xib */; };
 		012D17D01A9E1C9300362426 /* Acapulco.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012D17CF1A9E1C9300362426 /* Acapulco.swift */; };
 		01C6E0331A9E279F00461A8A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 012D17B31A9E1C6A00362426 /* Main.storyboard */; };
 		01C6E0351A9E289500461A8A /* Acapulco.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01C6E0341A9E289500461A8A /* Acapulco.storyboard */; };
 		01C6E0371A9E7F7000461A8A /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C6E0361A9E7F7000461A8A /* ContentViewController.swift */; };
+		01E2DA5B1A9F113F00FA5D39 /* NotificationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E2DA5A1A9F113F00FA5D39 /* NotificationFactory.swift */; };
+		01E2DA5D1A9F213300FA5D39 /* PushPermissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E2DA5C1A9F213300FA5D39 /* PushPermissionViewController.swift */; };
+		01E2DA5F1A9F225F00FA5D39 /* DoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E2DA5E1A9F225F00FA5D39 /* DoneViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		012D17AA1A9E1C6A00362426 /* AcapulcoSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AcapulcoSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		012D17AE1A9E1C6A00362426 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		012D17AF1A9E1C6A00362426 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		012D17B11A9E1C6A00362426 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		012D17B11A9E1C6A00362426 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		012D17B41A9E1C6A00362426 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		012D17B61A9E1C6A00362426 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		012D17B91A9E1C6A00362426 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -30,6 +33,9 @@
 		012D17CF1A9E1C9300362426 /* Acapulco.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Acapulco.swift; sourceTree = "<group>"; };
 		01C6E0341A9E289500461A8A /* Acapulco.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Acapulco.storyboard; path = ../Acapulco.storyboard; sourceTree = "<group>"; };
 		01C6E0361A9E7F7000461A8A /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		01E2DA5A1A9F113F00FA5D39 /* NotificationFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationFactory.swift; sourceTree = "<group>"; };
+		01E2DA5C1A9F213300FA5D39 /* PushPermissionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushPermissionViewController.swift; sourceTree = "<group>"; };
+		01E2DA5E1A9F225F00FA5D39 /* DoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoneViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,15 +69,18 @@
 		012D17AC1A9E1C6A00362426 /* AcapulcoSample */ = {
 			isa = PBXGroup;
 			children = (
+				012D17CF1A9E1C9300362426 /* Acapulco.swift */,
 				012D17AF1A9E1C6A00362426 /* AppDelegate.swift */,
-				012D17B11A9E1C6A00362426 /* ViewController.swift */,
+				01C6E0361A9E7F7000461A8A /* ContentViewController.swift */,
+				012D17B11A9E1C6A00362426 /* MainViewController.swift */,
+				01E2DA5A1A9F113F00FA5D39 /* NotificationFactory.swift */,
 				012D17B31A9E1C6A00362426 /* Main.storyboard */,
 				01C6E0341A9E289500461A8A /* Acapulco.storyboard */,
 				012D17B61A9E1C6A00362426 /* Images.xcassets */,
 				012D17B81A9E1C6A00362426 /* LaunchScreen.xib */,
 				012D17AD1A9E1C6A00362426 /* Supporting Files */,
-				012D17CF1A9E1C9300362426 /* Acapulco.swift */,
-				01C6E0361A9E7F7000461A8A /* ContentViewController.swift */,
+				01E2DA5C1A9F213300FA5D39 /* PushPermissionViewController.swift */,
+				01E2DA5E1A9F225F00FA5D39 /* DoneViewController.swift */,
 			);
 			path = AcapulcoSample;
 			sourceTree = "<group>";
@@ -177,10 +186,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01E2DA5F1A9F225F00FA5D39 /* DoneViewController.swift in Sources */,
 				01C6E0371A9E7F7000461A8A /* ContentViewController.swift in Sources */,
 				012D17D01A9E1C9300362426 /* Acapulco.swift in Sources */,
-				012D17B21A9E1C6A00362426 /* ViewController.swift in Sources */,
+				012D17B21A9E1C6A00362426 /* MainViewController.swift in Sources */,
+				01E2DA5D1A9F213300FA5D39 /* PushPermissionViewController.swift in Sources */,
 				012D17B01A9E1C6A00362426 /* AppDelegate.swift in Sources */,
+				01E2DA5B1A9F113F00FA5D39 /* NotificationFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -69,7 +69,7 @@ public class Acapulco {
         let payload = userInfo as NSDictionary
         
         if let notificationId = payload["id"] as? NSString {
-                tellNotificationReceived(notificationId.integerValue)
+                tellNotificationRed(notificationId.integerValue)
         }
     }
     

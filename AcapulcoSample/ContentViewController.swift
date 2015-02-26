@@ -41,7 +41,7 @@ public class ContentViewController : UIViewController {
             Acapulco.sharedInstance.didRedNotification(userInfo as! [NSObject : AnyObject])
             
             if debug { // Show raw notification data
-                
+
                 let content = payload.description // Just take the description...
                 
                 let htmlString = "<html><body>" + content + "</body></html>" // ... and dump it in the body of the HTML page

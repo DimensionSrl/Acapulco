@@ -69,7 +69,7 @@ public class Acapulco {
         let payload = userInfo as NSDictionary
         
         if let notificationId = payload["id"] as? NSString {
-                tellNotificationReceived(notificationId.integerValue)
+                tellNotificationRed(notificationId.integerValue)
         }
     }
     
@@ -84,6 +84,26 @@ public class Acapulco {
         
          if let notificationId = payload["id"] as? NSString {
                 tellNotificationReceived(notificationId.integerValue)
+        }
+    }
+    
+    /**
+    This will update some of the device data on Acapulco.
+    
+    :serverAddress: The address of Acapulco.
+    
+    :applicationKey: The application key you got from Acapulco.
+    
+    */
+    public func updateDeviceInfo() {
+        
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        
+        // We need the apns token, the server address and the application key
+        if let apnsToken = userDefaults.objectForKey(AcapulcoConstants.ApnsTokenKey) as? String,
+            let address = userDefaults.objectForKey(AcapulcoConstants.ServerAddressKey) as? String,
+            let key = userDefaults.objectForKey(AcapulcoConstants.ApplicationKeyKey) as? String {
+                register(apnsToken, serverAddress: address, applicationKey: key)
         }
     }
     
@@ -110,12 +130,6 @@ public class Acapulco {
         }
         
         task.resume()
-    }
-    
-    private var callbacks = [AcapulcoNotificationCallback]()
-    
-    public func registerCallback(callback: AcapulcoNotificationCallback) {
-        callbacks.append(callback)
     }
     
     private func tellNotificationRed(notificationId: Int) {
@@ -176,53 +190,6 @@ public class Acapulco {
         NSUserDefaults.standardUserDefaults().setObject(applicationKey, forKey: AcapulcoConstants.ApplicationKeyKey)
         NSUserDefaults.standardUserDefaults().setObject(registrationId, forKey: AcapulcoConstants.RegistrationIdKey)
         NSUserDefaults.standardUserDefaults().synchronize()
-    }
-    
-    public func handleNotification(userInfo: [NSObject : AnyObject]) -> Bool {
-        
-        let notification : NSDictionary = userInfo
-        
-        println(notification.description)
-        
-        if notification["id"] != nil {
-         
-            let notificationId = notification["id"]?.integerValue
-            
-            if (notificationId != nil) {
-                tellNotificationReceived(notificationId!)
-            }
-            
-            for callback in callbacks {
-                
-                if callback(userInfo: userInfo) {
-                    tellNotificationRed(notificationId!)
-                }
-            }
-            
-            return true
-        }
-        
-        return false
-    }
-    
-    /**
-        This will update some of the device data on Acapulco.
-    
-    :serverAddress: The address of Acapulco.
-    
-    :applicationKey: The application key you got from Acapulco.
-    
-    */
-    public func updateDeviceInfo() {
-        
-        let userDefaults = NSUserDefaults.standardUserDefaults()
-        
-        // We need the apns token, the server address and the application key
-        if let apnsToken = userDefaults.objectForKey(AcapulcoConstants.ApnsTokenKey) as? String,
-            let address = userDefaults.objectForKey(AcapulcoConstants.ServerAddressKey) as? String,
-            let key = userDefaults.objectForKey(AcapulcoConstants.ApplicationKeyKey) as? String {
-            register(apnsToken, serverAddress: address, applicationKey: key)
-        }
     }
     
     private func register(token: String, serverAddress: String, applicationKey: String) {

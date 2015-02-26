@@ -9,13 +9,17 @@
 import Foundation
 import UIKit
 
+public typealias AcapulcoNotificationCallback = (userInfo: [NSObject : AnyObject]) -> Bool
+
 // This will take care of APNS in your place.
 public class Acapulco {
     
     struct AcapulcoConstants {
         static let ServerAddressKey = "acapulcoServerAddress"
-        static let RegistrationIdKey = "acapulcoRegistrationId"
+        static let ApnsTokenKey = "acapulcoApnsToken"
         static let ApplicationKeyKey = "acapulcoApplicationKey"
+        static let RegistrationIdKey = "acapulcoRegistrationIdKey"
+        static let Timeout : NSTimeInterval = 5
     }
     
     /**
@@ -28,10 +32,94 @@ public class Acapulco {
         return SharedInstance.instance
     }
     
-    private func updateRegistration(registrationId: String, serverAddress: String, applicationKey: String) {
+    private func tellNotificationRed(notificationId: Int, registrationId: String, serverAddress: String, applicationKey: String) {
+        
+        let nofificationIdString = String(format:"%d", notificationId)
+        let path = "http://" + serverAddress.stringByAppendingPathComponent("apps").stringByAppendingPathComponent(applicationKey).stringByAppendingPathComponent("devices").stringByAppendingPathComponent(registrationId).stringByAppendingPathComponent("messages").stringByAppendingPathComponent(nofificationIdString).stringByAppendingPathComponent("red")
+        
+        let url = NSURL(string: path)
+        
+        let request = NSMutableURLRequest()
+        request.URL = url
+        
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.HTTPMethod = "POST"
+        
+        request.timeoutInterval = AcapulcoConstants.Timeout
+        
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
+            (data, response, error) in
+            
+            println(NSString(data: data, encoding: NSUTF8StringEncoding))
+        }
+        
+        task.resume()
+    }
+    
+    private var callbacks = [AcapulcoNotificationCallback]()
+    
+    public func registerCallback(callback: AcapulcoNotificationCallback) {
+        callbacks.append(callback)
+    }
+    
+    private func tellNotificationRed(notificationId: Int) {
+        
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        
+        // We need the registration ID, the server address and the application key
+        
+        if let registrationId = userDefaults.objectForKey(AcapulcoConstants.RegistrationIdKey) as? String,
+            let address = userDefaults.objectForKey(AcapulcoConstants.ServerAddressKey) as? String,
+            let key = userDefaults.objectForKey(AcapulcoConstants.ApplicationKeyKey) as? String {
+                tellNotificationRed(notificationId, registrationId: registrationId, serverAddress: address, applicationKey: key)
+        }
+    }
+    
+    private func tellNotificationReceived(notificationId: Int, registrationId: String, serverAddress: String, applicationKey: String) {
+        
+        let nofificationIdString = String(format:"%d", notificationId)
+        let path = "http://" + serverAddress.stringByAppendingPathComponent("apps").stringByAppendingPathComponent(applicationKey).stringByAppendingPathComponent("devices").stringByAppendingPathComponent(registrationId).stringByAppendingPathComponent("messages").stringByAppendingPathComponent(nofificationIdString).stringByAppendingPathComponent("received")
+        
+        let url = NSURL(string: path)
+        
+        let request = NSMutableURLRequest()
+        request.URL = url
+        
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.HTTPMethod = "POST"
+        
+        request.timeoutInterval = AcapulcoConstants.Timeout
+        
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
+            (data, response, error) in
+            
+            println(NSString(data: data, encoding: NSUTF8StringEncoding))
+        }
+        
+        task.resume()
+    }
+    
+    private func tellNotificationReceived(notificationId: Int) {
+        
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+
+        // We need the registration ID, the server address and the application key
+        
+        if let registrationId = userDefaults.objectForKey(AcapulcoConstants.RegistrationIdKey) as? String,
+            let address = userDefaults.objectForKey(AcapulcoConstants.ServerAddressKey) as? String,
+            let key = userDefaults.objectForKey(AcapulcoConstants.ApplicationKeyKey) as? String {
+                tellNotificationReceived(notificationId, registrationId: registrationId, serverAddress: address, applicationKey: key)
+        }
+    }
+    
+    private func updateRegistration(apnsToken: String, serverAddress: String, applicationKey: String,registrationId: String) {
+        
         NSUserDefaults.standardUserDefaults().setObject(serverAddress, forKey: AcapulcoConstants.ServerAddressKey)
-        NSUserDefaults.standardUserDefaults().setObject(registrationId, forKey: AcapulcoConstants.RegistrationIdKey)
+        NSUserDefaults.standardUserDefaults().setObject(apnsToken, forKey: AcapulcoConstants.ApnsTokenKey)
         NSUserDefaults.standardUserDefaults().setObject(applicationKey, forKey: AcapulcoConstants.ApplicationKeyKey)
+        NSUserDefaults.standardUserDefaults().setObject(registrationId, forKey: AcapulcoConstants.RegistrationIdKey)
         NSUserDefaults.standardUserDefaults().synchronize()
     }
     
@@ -40,6 +128,23 @@ public class Acapulco {
         let notification : NSDictionary = userInfo
         
         println(notification.description)
+        
+        if notification["id"] != nil {
+         
+            let notificationId = notification["id"]?.integerValue
+            
+            if (notificationId != nil) {
+                tellNotificationReceived(notificationId!)
+            }
+            
+            for callback in callbacks {
+                
+                if callback(userInfo: userInfo) {
+                    tellNotificationRed(notificationId!)
+                }
+            }
+                    return true
+        }
         
         return false
     }
@@ -56,10 +161,11 @@ public class Acapulco {
         
         let userDefaults = NSUserDefaults.standardUserDefaults()
         
-        if let registrationId = userDefaults.objectForKey(AcapulcoConstants.RegistrationIdKey) as? String,
+        // We need the apns token, the server address and the application key
+        if let apnsToken = userDefaults.objectForKey(AcapulcoConstants.ApnsTokenKey) as? String,
             let address = userDefaults.objectForKey(AcapulcoConstants.ServerAddressKey) as? String,
             let key = userDefaults.objectForKey(AcapulcoConstants.ApplicationKeyKey) as? String {
-            register(registrationId, serverAddress: address, applicationKey: key)
+            register(apnsToken, serverAddress: address, applicationKey: key)
         }
     }
     
@@ -93,7 +199,7 @@ public class Acapulco {
         var error :NSErrorPointer = nil
         let jsonPayload = NSJSONSerialization .dataWithJSONObject(payload, options: NSJSONWritingOptions.allZeros, error: error)
         request.HTTPBody = jsonPayload
-        request.timeoutInterval = 5
+        request.timeoutInterval = AcapulcoConstants.Timeout
         
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
             (data, response, error) in
@@ -104,7 +210,7 @@ public class Acapulco {
                 
                 var error :NSErrorPointer = nil
                 if let response = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.allZeros, error: error) as? NSDictionary, let registrationId = response["id"] as? String {
-                    self.updateRegistration(registrationId, serverAddress: serverAddress, applicationKey: applicationKey)
+                    self.updateRegistration(token, serverAddress: serverAddress, applicationKey: applicationKey, registrationId:registrationId)
                 }
             } else {
                 

@@ -2,12 +2,13 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7519.1" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="sUx-wB-QcG">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7513.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="3eW-CZ-xVU">
             <objects>
-                <viewController id="sUx-wB-QcG" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContentVC" id="sUx-wB-QcG" customClass="ViewController" customModule="AcapulcoSample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LZc-7h-cKZ"/>
                         <viewControllerLayoutGuide type="bottom" id="jFo-PS-IbC"/>
@@ -16,14 +17,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Gc-X1-vjF">
-                                <rect key="frame" x="133" y="171" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Acapulco" translatesAutoresizingMaskIntoConstraints="NO" id="VVN-qu-Q6n">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="jFo-PS-IbC" firstAttribute="top" secondItem="VVN-qu-Q6n" secondAttribute="bottom" id="EXK-Ud-0G6"/>
+                            <constraint firstItem="VVN-qu-Q6n" firstAttribute="top" secondItem="B0Y-lg-GGE" secondAttribute="topMargin" id="Nvc-AI-IOv"/>
+                            <constraint firstItem="VVN-qu-Q6n" firstAttribute="leading" secondItem="B0Y-lg-GGE" secondAttribute="leading" id="Wcr-az-6Yl"/>
+                            <constraint firstAttribute="trailing" secondItem="VVN-qu-Q6n" secondAttribute="trailing" id="gff-9v-wRn"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Es9-Ql-Asg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -31,6 +35,9 @@
             <point key="canvasLocation" x="343" y="396"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Acapulco" width="1024" height="1024"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

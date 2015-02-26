@@ -26,6 +26,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+        if(Acapulco.sharedInstance.handleNotification(userInfo)) {
+            
+            // You received an Acapulco notification. Acapulco handled it, but you
+            // might want to do something with it too.
+            completionHandler(UIBackgroundFetchResult.NewData)
+            
+        } else {
+            
+            // Acapulco does not know how to handle this notification, but maybe you will.
+        }
+    }
+    
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
         println(error.localizedDescription)
     }

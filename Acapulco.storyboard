@@ -92,6 +92,9 @@
                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="VsV-wb-GHr"/>
                         <barButtonItem key="rightBarButtonItem" title="Debug" id="cs0-20-515"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="debugButton" destination="cs0-20-515" id="uT4-zf-iJx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bz3-wX-M09" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

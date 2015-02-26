@@ -205,6 +205,7 @@ public class Acapulco {
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.HTTPMethod = "POST"
         
+        // TODO: get coordinates from CoreLocation
         let lat = 46.0667
         let lon = 11.1167
         let identifier = UIDevice.currentDevice().identifierForVendor.UUIDString

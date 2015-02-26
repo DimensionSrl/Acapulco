@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7519.1" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="iRb-TT-txP">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7513.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Main View Controller-->
@@ -60,6 +59,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="SJx-cH-wqb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <connections>
                         <segue destination="CbH-08-Zyr" kind="relationship" relationship="rootViewController" id="z85-78-cwS"/>
@@ -81,33 +81,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IbQ-Ek-mf7">
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IbQ-Ek-mf7">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="IbQ-Ek-mf7" firstAttribute="leading" secondItem="ez9-ee-hFn" secondAttribute="leading" id="3cp-6n-mil"/>
-                            <constraint firstAttribute="trailing" secondItem="IbQ-Ek-mf7" secondAttribute="trailing" id="Wbi-uM-7gs"/>
-                            <constraint firstItem="IbQ-Ek-mf7" firstAttribute="top" secondItem="ez9-ee-hFn" secondAttribute="topMargin" id="ddK-a3-Qx9"/>
-                            <constraint firstItem="pWQ-34-jZf" firstAttribute="top" secondItem="IbQ-Ek-mf7" secondAttribute="bottom" id="gvy-dH-gaO"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="iJY-cI-yjx">
-                        <barButtonItem key="leftBarButtonItem" title="Item" systemItem="done" id="VsV-wb-GHr">
-                            <connections>
-                                <action selector="actionDone:" destination="CbH-08-Zyr" id="b51-4m-koX"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Debug" id="cs0-20-515">
-                            <connections>
-                                <action selector="actionDebug:" destination="CbH-08-Zyr" id="crE-jj-lmC"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="VsV-wb-GHr"/>
+                        <barButtonItem key="rightBarButtonItem" title="Debug" id="cs0-20-515"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="webView" destination="IbQ-Ek-mf7" id="ZrN-hg-maa"/>
+                        <outlet property="debugButton" destination="cs0-20-515" id="uT4-zf-iJx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bz3-wX-M09" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -121,6 +107,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bbn-NU-xCA">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="barTintColor" red="0.92941176469999998" green="0.72549019609999998" blue="0.062745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
@@ -149,7 +136,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="TgJ-Yf-KRg"/>
                                 </constraints>
-                                <state key="normal" title="Next">
+                                <state key="normal" title="Yes, please!">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -157,8 +144,12 @@
                                     <action selector="actionAskPermission" destination="HoI-RM-Lv3" eventType="touchUpInside" id="NPm-er-dNc"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ti chiedo il permesso push" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PDJ-tw-wuw">
-                                <rect key="frame" x="101" y="161" width="206" height="181"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PDJ-tw-wuw">
+                                <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                                <string key="text">We are going to ask
+for the permission to send
+you push notifications,
+please accept.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -167,7 +158,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="rgv-rp-Q7w" firstAttribute="top" secondItem="apf-Q0-G3E" secondAttribute="bottom" id="FlK-0F-HsI"/>
+                            <constraint firstItem="PDJ-tw-wuw" firstAttribute="top" secondItem="AwX-3W-2JH" secondAttribute="bottom" id="QhT-Ly-Elr"/>
+                            <constraint firstItem="rgv-rp-Q7w" firstAttribute="top" secondItem="PDJ-tw-wuw" secondAttribute="bottom" constant="44" id="Um2-fC-S5W"/>
+                            <constraint firstAttribute="trailing" secondItem="PDJ-tw-wuw" secondAttribute="trailing" id="fmT-Xw-qRa"/>
                             <constraint firstItem="apf-Q0-G3E" firstAttribute="leading" secondItem="qKQ-xE-B30" secondAttribute="leading" id="nhp-zj-SFs"/>
+                            <constraint firstItem="PDJ-tw-wuw" firstAttribute="leading" secondItem="qKQ-xE-B30" secondAttribute="leading" id="oWF-NV-ea4"/>
                             <constraint firstAttribute="trailing" secondItem="apf-Q0-G3E" secondAttribute="trailing" id="rO5-Iq-rZg"/>
                         </constraints>
                     </view>
@@ -209,7 +204,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="1BB-4o-GfO"/>
                                 </constraints>
-                                <state key="normal" title="Button">
+                                <state key="normal" title="Close">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -217,12 +212,28 @@
                                     <action selector="actionDone" destination="BuD-HZ-HYJ" eventType="touchUpInside" id="WFk-6q-5cj"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ll8-fi-DMm">
+                                <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                                <string key="text">Thanks, now visit
+
+http://acapulco.dimension.it
+
+and start sending
+push notifications.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="kts-ku-1f1" secondAttribute="trailing" id="7hI-Z2-35M"/>
+                            <constraint firstAttribute="trailing" secondItem="Ll8-fi-DMm" secondAttribute="trailing" id="CtR-2F-UjT"/>
                             <constraint firstItem="81h-2v-kBH" firstAttribute="top" secondItem="kts-ku-1f1" secondAttribute="bottom" id="STl-Zf-Sdn"/>
                             <constraint firstItem="kts-ku-1f1" firstAttribute="leading" secondItem="ibF-fh-PqA" secondAttribute="leading" id="lkj-z0-fVb"/>
+                            <constraint firstItem="Ll8-fi-DMm" firstAttribute="leading" secondItem="ibF-fh-PqA" secondAttribute="leading" id="mZ3-b0-iN9"/>
+                            <constraint firstItem="Ll8-fi-DMm" firstAttribute="top" secondItem="AiD-a7-pGP" secondAttribute="bottom" id="nLZ-go-lWF"/>
+                            <constraint firstItem="kts-ku-1f1" firstAttribute="top" secondItem="Ll8-fi-DMm" secondAttribute="bottom" id="qgy-3g-RY3"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="43L-aQ-cDd">

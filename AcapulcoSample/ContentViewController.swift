@@ -11,6 +11,7 @@ import UIKit
 public class ContentViewController : UIViewController {
     
     @IBOutlet weak var webView: UIWebView?
+    @IBOutlet weak var debugButton: UIBarButtonItem!
     
     var debug : Bool = false {
         didSet {

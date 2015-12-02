@@ -110,9 +110,8 @@ public class Acapulco {
     private func tellNotificationRed(notificationId: Int, registrationId: String, serverAddress: String, applicationKey: String) {
         
         let nofificationIdString = String(format:"%d", notificationId)
-        let path = "http://" + serverAddress.stringByAppendingPathComponent("apps").stringByAppendingPathComponent(applicationKey).stringByAppendingPathComponent("devices").stringByAppendingPathComponent(registrationId).stringByAppendingPathComponent("messages").stringByAppendingPathComponent(nofificationIdString).stringByAppendingPathComponent("red")
         
-        let url = NSURL(string: path)
+        let url = NSURL(string: serverAddress)?.URLByAppendingPathComponent("apps").URLByAppendingPathComponent(applicationKey).URLByAppendingPathComponent("devices").URLByAppendingPathComponent(registrationId).URLByAppendingPathComponent("messages").URLByAppendingPathComponent(nofificationIdString).URLByAppendingPathComponent("red")
         
         let request = NSMutableURLRequest()
         request.URL = url
@@ -125,8 +124,11 @@ public class Acapulco {
         
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
             (data, response, error) in
-            
-            println(NSString(data: data, encoding: NSUTF8StringEncoding))
+            if let data = data {
+                print(NSString(data: data, encoding: NSUTF8StringEncoding))
+            } else {
+                print("Error \(error?.localizedDescription)")
+            }
         }
         
         task.resume()
@@ -148,9 +150,8 @@ public class Acapulco {
     private func tellNotificationReceived(notificationId: Int, registrationId: String, serverAddress: String, applicationKey: String) {
         
         let nofificationIdString = String(format:"%d", notificationId)
-        let path = "http://" + serverAddress.stringByAppendingPathComponent("apps").stringByAppendingPathComponent(applicationKey).stringByAppendingPathComponent("devices").stringByAppendingPathComponent(registrationId).stringByAppendingPathComponent("messages").stringByAppendingPathComponent(nofificationIdString).stringByAppendingPathComponent("received")
         
-        let url = NSURL(string: path)
+        let url = NSURL(string: serverAddress)?.URLByAppendingPathComponent("apps").URLByAppendingPathComponent(applicationKey).URLByAppendingPathComponent("devices").URLByAppendingPathComponent(registrationId).URLByAppendingPathComponent("messages").URLByAppendingPathComponent(nofificationIdString).URLByAppendingPathComponent("received")
         
         let request = NSMutableURLRequest()
         request.URL = url
@@ -163,8 +164,11 @@ public class Acapulco {
         
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
             (data, response, error) in
-            
-            println(NSString(data: data, encoding: NSUTF8StringEncoding))
+            if let data = data {
+                print(NSString(data: data, encoding: NSUTF8StringEncoding))
+            } else {
+                print("Error \(error?.localizedDescription)")
+            }
         }
         
         task.resume()
@@ -194,9 +198,7 @@ public class Acapulco {
     
     private func register(token: String, serverAddress: String, applicationKey: String) {
         
-        let path = "http://" + serverAddress.stringByAppendingPathComponent("apps").stringByAppendingPathComponent(applicationKey).stringByAppendingPathComponent("devices")
-        
-        let url = NSURL(string: path)
+        let url = NSURL(string: serverAddress)?.URLByAppendingPathComponent("apps").URLByAppendingPathComponent(applicationKey).URLByAppendingPathComponent("devices")
         
         let request = NSMutableURLRequest()
         request.URL = url
@@ -206,41 +208,48 @@ public class Acapulco {
         request.HTTPMethod = "POST"
         
         // TODO: get coordinates from CoreLocation
-        let lat = 46.0667
-        let lon = 11.1167
-        let identifier = UIDevice.currentDevice().identifierForVendor.UUIDString
+        // let lat = 46.0667
+        // let lon = 11.1167
+        let identifier = UIDevice.currentDevice().identifierForVendor!.UUIDString
         let locale = "it"
         let name = UIDevice.currentDevice().name
         
         let payload = ["identifier":identifier,
             "token":token,
-            "lat":lat,
-            "lon":lon,
+            // "lat":lat,
+            // "lon":lon,
             "locale":locale,
             "name":name
         ]
         
-        var error :NSErrorPointer = nil
-        let jsonPayload = NSJSONSerialization .dataWithJSONObject(payload, options: NSJSONWritingOptions.allZeros, error: error)
-        request.HTTPBody = jsonPayload
-        request.timeoutInterval = AcapulcoConstants.Timeout
-        
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
-            [weak self](data, response, error) in
+        do {
+            let jsonPayload = try NSJSONSerialization .dataWithJSONObject(payload, options: NSJSONWritingOptions())
+            request.HTTPBody = jsonPayload
+            request.timeoutInterval = AcapulcoConstants.Timeout
             
-            println(NSString(data: data, encoding: NSUTF8StringEncoding))
-            
-            if (error == nil) {
-                
-                var error :NSErrorPointer = nil
-                if let response = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.allZeros, error: error) as? NSDictionary, let registrationId = response["id"] as? String {
-                    self?.updateRegistration(token, serverAddress: serverAddress, applicationKey: applicationKey, registrationId:registrationId)
+            let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
+                [weak self](data, response, error) in
+                if let data = data {
+                    print(NSString(data: data, encoding: NSUTF8StringEncoding))
+                    if (error == nil) {
+                        do {
+                            if let response = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions()) as? NSDictionary, let registrationId = response["id"] as? String {
+                                self?.updateRegistration(token, serverAddress: serverAddress, applicationKey: applicationKey, registrationId:registrationId)
+                            }
+                        } catch _ {
+                            print("Cannot parse respose as Json")
+                        }
+                    } else {
+                        print("Error \(error?.localizedDescription)")
+                    }
+                } else {
+                    print("Not data in the response")
                 }
-            } else {
-                
             }
+            task.resume()
+        } catch _ {
+            print("Error: cannot create payload")
         }
-        task.resume()
     }
     
     private func convertTokenDataToHexString(token: NSData) -> String {

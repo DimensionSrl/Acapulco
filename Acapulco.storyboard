@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7519.1" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="iRb-TT-txP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="iRb-TT-txP">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7513.1"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
         <!--Main View Controller-->
         <scene sceneID="3eW-CZ-xVU">
             <objects>
-                <viewController storyboardIdentifier="MainVC" id="sUx-wB-QcG" customClass="MainViewController" customModule="AcapulcoSample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainVC" id="sUx-wB-QcG" customClass="MainViewController" customModule="Acapulco" customModuleProvider="target" sceneMemberID="viewController">
                     <webView key="view" contentMode="scaleToFill" id="Qrm-yU-4KY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -16,7 +17,7 @@
                     <navigationItem key="navigationItem" id="PUu-OA-1XC">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="tAB-DO-Qr1">
-                            <rect key="frame" x="96" y="6" width="128" height="33"/>
+                            <rect key="frame" x="96" y="5.5" width="128" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="vc2-mk-hIC">
@@ -73,7 +74,7 @@
         <!--Content View Controller-->
         <scene sceneID="sp8-bh-VoT">
             <objects>
-                <viewController storyboardIdentifier="ContentVC" id="CbH-08-Zyr" customClass="ContentViewController" customModule="AcapulcoSample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContentVC" id="CbH-08-Zyr" customClass="ContentViewController" customModule="Acapulco" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZfE-w1-UrW"/>
                         <viewControllerLayoutGuide type="bottom" id="pWQ-34-jZf"/>
@@ -103,7 +104,7 @@
                             </connections>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="VW1-Lb-tOH">
-                            <rect key="frame" x="96" y="6" width="128" height="33"/>
+                            <rect key="frame" x="96" y="5.5" width="128" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="fi8-xV-8Je">
@@ -148,7 +149,7 @@
         <!--Push Permission View Controller-->
         <scene sceneID="F3c-zb-J7I">
             <objects>
-                <viewController id="HoI-RM-Lv3" customClass="PushPermissionViewController" customModule="AcapulcoSample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="HoI-RM-Lv3" customClass="PushPermissionViewController" customModule="Acapulco" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="AwX-3W-2JH"/>
                         <viewControllerLayoutGuide type="bottom" id="rgv-rp-Q7w"/>
@@ -196,7 +197,7 @@ please accept.</string>
                     <navigationItem key="navigationItem" id="ACz-eW-WUv">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="IjH-Dq-2UM">
-                            <rect key="frame" x="96" y="6" width="128" height="33"/>
+                            <rect key="frame" x="96" y="5.5" width="128" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="pC8-LT-PiZ">
@@ -216,7 +217,7 @@ please accept.</string>
         <!--Done View Controller-->
         <scene sceneID="IwD-Kj-YVw">
             <objects>
-                <viewController id="BuD-HZ-HYJ" customClass="DoneViewController" customModule="AcapulcoSample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BuD-HZ-HYJ" customClass="DoneViewController" customModule="Acapulco" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="AiD-a7-pGP"/>
                         <viewControllerLayoutGuide type="bottom" id="81h-2v-kBH"/>
@@ -266,7 +267,7 @@ push notifications.</string>
                     <navigationItem key="navigationItem" id="43L-aQ-cDd">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="1yZ-qA-1ur">
-                            <rect key="frame" x="96" y="6" width="128" height="33"/>
+                            <rect key="frame" x="96" y="5.5" width="128" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="5oz-AV-yUk">
@@ -284,9 +285,4 @@ push notifications.</string>
     <resources>
         <image name="Logo" width="118" height="38"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>

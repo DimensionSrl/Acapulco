@@ -35,11 +35,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
         
-        println(error.localizedDescription) // Log the error
+        print(error.localizedDescription) // Log the error
     }
 
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        
         #if DEBUG
         Acapulco.sharedInstance.registerAPNSToken(deviceToken, serverAddress:"acapulco.dimension.it", applicationKey: "2b4ba5088b4bfe7f") // Sandbox
         #else
@@ -62,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Renew registration
         if Acapulco.sharedInstance.isRegistered() {
-            let types : UIUserNotificationType = .Badge | .Sound | .Alert
+            let types : UIUserNotificationType = [.Badge, .Sound, .Alert]
             let settings = UIUserNotificationSettings(forTypes: types, categories: nil)
             UIApplication.sharedApplication().registerUserNotificationSettings(settings)
         }

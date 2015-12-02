@@ -13,11 +13,11 @@ public class PushPermissionViewController : UIViewController {
     @IBAction public func actionAskPermission() {
      
         // Attempt to enable push notifications
-        let types : UIUserNotificationType = .Badge | .Sound | .Alert
+        let types : UIUserNotificationType = [.Badge, .Sound, .Alert]
         let settings = UIUserNotificationSettings(forTypes: types, categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(settings)
         
-        println("I just asked to enabled Push Notifications")
+        print("I just asked to enabled Push Notifications")
         
         performSegueWithIdentifier("toThanks", sender: self) // Peform the "toThanks" segue in the storyboard
     }

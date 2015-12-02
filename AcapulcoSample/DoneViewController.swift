@@ -15,7 +15,7 @@ public class DoneViewController: UIViewController {
         // Tell the navigation controller to dimiss itself and take its child with him
         self.navigationController?.dismissViewControllerAnimated(true, completion: {
             
-            println("Thank you!") // Log something nice for once :)
+            print("Thank you!") // Log something nice for once :)
         })
     }
 }

@@ -14,11 +14,10 @@ public class MainViewController: UIViewController {
         super.viewDidLoad()
 
         // Load the webview content
-        if let URL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("README", ofType: "html")!) {
-            let request = NSURLRequest(URL: URL)
-            if let webView = view as? UIWebView {
-                webView.loadRequest(request)
-            }
+        let URL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("README", ofType: "html")!)
+        let request = NSURLRequest(URL: URL)
+        if let webView = view as? UIWebView {
+            webView.loadRequest(request)
         }
 
         // Renew registrations to NSNotificationCenter
@@ -34,10 +33,10 @@ public class MainViewController: UIViewController {
         // Check if we have already registered on Acapulco. If not, 
         // start the registration flow
         if !(Acapulco.sharedInstance.isRegistered()) {
-            println("Acapulco is not registered, yet")
+            print("Acapulco is not registered, yet")
             performSegueWithIdentifier("registration", sender: self)
         } else {
-            println("Acapulco is already registered")
+            print("Acapulco is already registered")
         }
     }
     

@@ -136,7 +136,8 @@
 		012D17A21A9E1C6A00362426 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastSwiftUpdateCheck = 0710;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Dimension s.r.l.";
 				TargetAttributes = {
 					012D17A91A9E1C6A00362426 = {
@@ -231,6 +232,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -302,8 +304,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-D DEBUG";
+				PRODUCT_BUNDLE_IDENTIFIER = it.dimension.fashion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3df560eb-3f87-426b-a541-21efa98d8b2f";
+				PROVISIONING_PROFILE = "4d037aa8-7ae0-4df9-b86a-4476d7e7735b";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -317,8 +320,9 @@
 				INFOPLIST_FILE = AcapulcoSample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = it.dimension.fashion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "71a2d7a3-3749-4b33-b0f4-46a02f252fe2";
+				PROVISIONING_PROFILE = "c2e1f043-5c52-47af-a294-1cc57934d48a";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
